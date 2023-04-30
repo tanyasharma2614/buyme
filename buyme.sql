@@ -230,4 +230,28 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
+/* Table for FAQ's (I have not added the insert query as I lost the questions :) ) */
+CREATE TABLE `FAQ` (
+  `question` varchar(200) NOT NULL,
+  `answer` varchar(200) DEFAULT NULL
+);
+
+
+DROP TABLE IF EXISTS `userqueries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `userqueries` (
+  `queryId` int NOT NULL AUTO_INCREMENT,
+  `queryStatus` int DEFAULT '0',
+  `query` varchar(300) DEFAULT NULL,
+  `answer` varchar(300) DEFAULT NULL,
+  `username` varchar(30) NOT NULL,
+
+  PRIMARY KEY (`queryId`),
+  KEY `username` (`username`),
+  CONSTRAINT `query_ibfk_2` FOREIGN KEY (`username`) REFERENCES `enduser` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Dump completed on 2023-04-09 18:46:22
